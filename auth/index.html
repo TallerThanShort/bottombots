@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Authorising | Redir110</title>
+</head>
+<body>
+    <script>
+        window.onload = function(){
+            const fragment = new URLSearchParams(window.location.hash.slice(1));
+            const [accessToken, tokenType, state, timeout] = [fragment.get('access_token'), fragment.get('token_type'), fragment.get('state'), fragment.get('expires_in')];
+            localStorage.setItem('accessToken', accessToken);
+            localStorage.setItem('tokenType', tokenType);
+            localStorage.setItem('state', state);
+            localStorage.setItem('timeout', timeout);
+
+            if (!accessToken) {
+                if(tokenType){
+                    console.log("!nothing to clear!").then(localStorage.clear());
+                } else{
+                    localStorage.clear().then(window.alert("ERR: Invalid Token"));
+                }
+            }
+
+            fetch('https://discord.com/api/users/@me', {
+                headers: {
+                    authorization: `${tokenType} ${accessToken}`,
+                },
+            })
+                .then(result => result.json())
+                .then(response => {
+                    const { username, discriminator } = response;
+                    localStorage.setItem('username', username);
+                    localStorage.setItem('discriminator', discriminator);
+                    location.href="/";
+                })
+        }
+    </script>
+    
+</body>
+</html>
