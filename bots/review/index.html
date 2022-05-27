@@ -52,13 +52,15 @@
     </script>
     <script>
         const container = document.querySelector('.gridz');
+        const usertime = localStorage.getItem('discriminator');
+        let html = ``;
 
-        db.collection('queue').get().then(snapshot => {
+        if(usertime != null){
+            db.collection('queue').get().then(snapshot => {
             setupSite(snapshot.docs);
         });
 
         const setupSite = (data) => {
-            let html = ``;
             data.forEach(doc => {
                 const bot = doc.data();
                 const li = `
@@ -91,6 +93,13 @@
             });
             container.innerHTML = html;
         }
+        } else{
+            const li = `
+            <h3 style="color: crimson; cursor: pointer;" onclick="location.href='/'">You must first log in to see /bots/review</h3>
+            `
+            container.innerHTML = li;
+        }
+        
     </script>
     <script>
         window.onload = () => {

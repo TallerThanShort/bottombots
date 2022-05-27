@@ -5,6 +5,8 @@ span{
 
 input {
   border-color: #ddd;
+  border-radius: 75px;
+  text-align: center;
 }
 
 button {
