@@ -9,6 +9,11 @@ function generateRandomString() {
 	return randomString;
 }
 
+function logout() {
+    location.reload()
+    localStorage.clear();
+}
+
 window.onload = () => {
     const [accessToken, tokenType, state] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state')];
     const usertime = localStorage.getItem('discriminator');
@@ -27,6 +32,7 @@ window.onload = () => {
                 <div class="dropdown-content">
                 <a href="/bots/add">Add a Bot</a>
                 <a href="/servers/add">Add a Server</a>
+                <a onclick="logout()">Log Out</a>
             </div>
         </div>
         `

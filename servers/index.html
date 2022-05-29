@@ -4,61 +4,126 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <meta name="next-head-count" content="2">
-        <link rel="preload" href="newdefaultstyle.css" as="style">
-        <link rel="stylesheet" href="newdefaultstyle.css" data-n-g="">
+        <link rel="preload" href="guild.css" as="style">
+        <link rel="stylesheet" href="guild.css" data-n-g="">
         <noscript data-n-css=""></noscript>
-        <script src="script.js" defer=""></script>
         <style data-styled="active" data-styled-version="5.3.3"></style>
-        <title>Bottom | A new Discord Bot Listing Platform</title>
+        <title>Bottom | Discord Server List</title>
         <meta name="description" content="Find Discord Bots and Servers all in one place, on Bottom.">
-        <link rel="icon" href="https://ggpht.ga/icons/Bottom_new.png" data-react-helmet="true">
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+        <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+        <link rel="icon" href="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" data-react-helmet="true">
     </head>
-    <body>
-        <div id="title-and-nav">
-            <nav>
-                <img src="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" style="height: 66px; width: 66px;" onclick="location.href='/'">
-                <ul>
-                    <li><span onclick="location.href='/bots'">Bots!</span></li>
-                    <li><span onclick="location.href='/servers'">Servers?</span></li>
-                </ul>
-            </nav>
+    <body style="background-color: white;">
+        <div id="title">
+            <div class="logo">
+                <img src="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" style="height: 66px; width: 66px;" title="Bottom" alt="Bottom_Logo" onclick="location.href='/'">
+            </div>
+        </div>
+        <div class="row-31oovZ header-V8Sgnz">
+            <header class="wrapper-2bm6Le">
+                <nav class="nav-3_Sybl">
+                    <div class="links-DGfZfm">
+                        <ul id="navbarthings">
+                            <span class="link-1naFFL link-2eyudH" onclick="location.href='/servers'">Servers</span>
+                            <span class="link-1naFFL link-2eyudH" onclick="location.href='/ads'">Advertise</span>
+                        </ul>
+                        <div id="credoauth2-scope"></div>
+                    </div>
+                </nav>
+            </header>
+        </div>
+    
+        <div class="app-container">
+            <div class="gridz">
+                <p>Loading...</p>
+            </div>
         </div>
         <script type="text/javascript">
-            // <![CDATA[  <-- For SVG support
-            if ('WebSocket' in window) {
-                (function () {
-                    function refreshCSS() {
-                        var sheets = [].slice.call(document.getElementsByTagName("link"));
-                        var head = document.getElementsByTagName("head")[0];
-                        for (var i = 0; i < sheets.length; ++i) {
-                            var elem = sheets[i];
-                            var parent = elem.parentElement || head;
-                            parent.removeChild(elem);
-                            var rel = elem.rel;
-                            if (elem.href && typeof rel != "string" || rel.length == 0 || rel.toLowerCase() == "stylesheet") {
-                                var url = elem.href.replace(/(&|\?)_cacheOverride=\d+/, '');
-                                elem.href = url + (url.indexOf('?') >= 0 ? '&' : '?') + '_cacheOverride=' + (new Date().valueOf());
-                            }
-                            parent.appendChild(elem);
-                        }
-                    }
-                    var protocol = window.location.protocol === 'http:' ? 'ws://' : 'wss://';
-                    var address = protocol + window.location.host + window.location.pathname + '/ws';
-                    var socket = new WebSocket(address);
-                    socket.onmessage = function (msg) {
-                        if (msg.data == 'reload') window.location.reload();
-                        else if (msg.data == 'refreshcss') refreshCSS();
-                    };
-                    if (sessionStorage && !sessionStorage.getItem('IsThisFirstTime_Log_From_LiveServer')) {
-                        console.log('Live reload enabled.');
-                        sessionStorage.setItem('IsThisFirstTime_Log_From_LiveServer', true);
-                    }
-                })();
+            const firebaseConfig = {
+            apiKey: "AIzaSyAV1jnqT5r1xKYaW_z1c_M7rp8rWiMC3A8",
+            authDomain: "bottombots.xyz",
+            projectId: "bottom-bots",
+            storageBucket: "bottom-bots.appspot.com",
+            messagingSenderId: "759946456504",
+            appId: "1:759946456504:web:d5e5eacfa53d9ef43ab34d"
+        };
+        firebase.initializeApp(firebaseConfig);
+    
+        const db = firebase.firestore();
+        db.settings({ timestampsInSnapshots: true });
+        </script>
+        <script>
+            const container = document.querySelector('.gridz');
+            const usertime = localStorage.getItem('discriminator');
+            let html = ``;
+    
+            if(usertime != null){
+                db.collection('servers').get().then(snapshot => {
+                setupSite(snapshot.docs);
+            });
+    
+            const setupSite = (data) => {
+                data.forEach(doc => {
+                    const guild = doc.data();
+                    const li = `
+                    <div onclick="location.href='https://discord.gg/${guild.invite}';" title="Join ${guild.name}">
+                        <div class="slot">
+                            <div class="banner">
+                                <img class="banner-img" src="https://ggpht.ga/icons/${guild.banner}.png">
+                            </div>
+                            <div class="image">
+                                <img class="image-img" src="https://ggpht.ga/icons/${guild.logo}.png">
+                            </div>
+                            <div class="guild-descriptors">
+                                <div class="guild-desc">
+                                    <div class="guild-name">${guild.name}</div>
+                                    <div class="guild-id">${guild.id}</div>
+                                    <div class="owner-descriptors">
+                                        <div>
+                                            <p id="owner">${guild.owner_name}</p>
+                                        </div>
+                                        <div>
+                                            <p id="owner-id">${guild.owner}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    html += li
+                });
+                container.innerHTML = html;
             }
-            else {
-                console.error('Upgrade your browser. This Browser is NOT supported for WebSocket/Live-Reloading.');
+            } else{
+                const li = `
+                <h3 style="color: crimson; cursor: pointer;" onclick="location.href='/'">You must first log in to see /bots/review</h3>
+                `
+                container.innerHTML = li;
             }
-            // ]]>
+            
+        </script>
+        <script>
+            window.onload = () => {
+                const [accessToken, tokenType, state] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state')];
+        const loggedAs = `${localStorage.getItem('username')}#${localStorage.getItem('discriminator')}`
+        const usertime = localStorage.getItem('discriminator');
+        if(usertime != null){
+            let html = `
+            <div class="dropdown">
+                <span class="dropbtn">${loggedAs}</span>
+                    <div class="dropdown-content">
+                    <a href="/bots/add">Add a Bot</a>
+                    <a href="/servers/add">Add a Server</a>
+                </div>
+            </div>
+            `
+            document.getElementById('navbarthings').innerHTML += html;
+        } else{
+            document.getElementById('navbarthings').innerHTML += `<span class="link-1naFFL link-2eyudH" onclick="document.location.href = 'https://discord.com/api/oauth2/authorize?client_id=914396590901452820&redirect_uri=http%3A%2F%2Fbottombots.xyz%2Fauth&response_type=token&scope=identify%20email&state=${localStorage.getItem('oauth-state')}';">Log In</span>`
+        }
+            }
         </script>
     </body>
 </html>

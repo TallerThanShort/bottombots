@@ -31,9 +31,10 @@
             })
                 .then(result => result.json())
                 .then(response => {
-                    const { username, discriminator } = response;
+                    const { username, discriminator, id } = response;
                     localStorage.setItem('username', username);
                     localStorage.setItem('discriminator', discriminator);
+                    localStorage.setItem('log_id', id);
                     location.href="/";
                 })
         }
