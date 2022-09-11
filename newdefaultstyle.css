@@ -93,11 +93,6 @@ button {
   padding:10px
 }
 
-#title{
-  position: absolute;
-  left: 200px;
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
