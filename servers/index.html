@@ -14,7 +14,7 @@
         <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
         <link rel="icon" href="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" data-react-helmet="true">
     </head>
-    <body style="background-color: white;">
+    <body>
         <div id="title">
             <div class="logo">
                 <img src="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" style="height: 66px; width: 66px;" title="Bottom" alt="Bottom_Logo" onclick="location.href='/'">
@@ -25,8 +25,8 @@
                 <nav class="nav-3_Sybl">
                     <div class="links-DGfZfm">
                         <ul id="navbarthings">
-                            <span class="link-1naFFL link-2eyudH" onclick="location.href='/servers'">Servers</span>
-                            <span class="link-1naFFL link-2eyudH" onclick="location.href='/ads'">Advertise</span>
+                            <span class="link-1naFFL link-2eyudH" onclick="location.href='https://tallerthanshort.github.io/bottombots'">Bots</span>
+                            <span class="link-1naFFL link-2eyudH" onclick="location.href='https://tallerthanshort.github.io/bottombots/servers'">Servers</span>
                         </ul>
                         <div id="credoauth2-scope"></div>
                     </div>
@@ -67,24 +67,24 @@
                 data.forEach(doc => {
                     const guild = doc.data();
                     const li = `
-                    <div onclick="location.href='https://discord.gg/${guild.invite}';" title="Join ${guild.name}">
+                    <div onclick="location.href='${guild.invite}';" title="Join ${guild.name}">
                         <div class="slot">
                             <div class="banner">
-                                <img class="banner-img" src="https://ggpht.ga/icons/${guild.banner}.png">
+                                <img class="banner-img" src="${guild.banner}">
                             </div>
                             <div class="image">
-                                <img class="image-img" src="https://ggpht.ga/icons/${guild.logo}.png">
+                                <img class="image-img" src="${guild.profile_image}">
                             </div>
                             <div class="guild-descriptors">
                                 <div class="guild-desc">
                                     <div class="guild-name">${guild.name}</div>
-                                    <div class="guild-id">${guild.id}</div>
+                                    <div class="guild-owner">Owner: ${guild.owner_name}</div>
                                     <div class="owner-descriptors">
                                         <div>
-                                            <p id="owner">${guild.owner_name}</p>
+                                            <p id="tags">${guild.tags}</p>
                                         </div>
                                         <div>
-                                            <p id="owner-id">${guild.owner}</p>
+                                            <p id="owner-id" style="font-size: 6px;">${guild.id}</p>
                                         </div>
                                     </div>
                                 </div>

@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <title>Add a server | Bottom</title>
+    <link rel="preload" href="serverflow.css" as="style">
+    <link rel="stylesheet" href="serverflow.css" data-n-g="">
+    <link rel="icon" href="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" data-react-helmet="true">
+</head>
+<body>
+    <div id="title">
+        <div class="logo">
+            <img src="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" style="height: 66px; width: 66px;" title="Bottom" alt="Bottom_Logo" onclick="location.href='/'">
+        </div>
+    </div>
+    <div class="row-31oovZ header-V8Sgnz">
+        <header class="wrapper-2bm6Le">
+            <nav class="nav-3_Sybl">
+                <div class="links-DGfZfm">
+                    <ul id="navbarthings">
+                        <span class="link-1naFFL link-2eyudH" onclick="location.href='/servers'">Servers</span>
+                        <span class="link-1naFFL link-2eyudH" onclick="location.href='/ads'">Advertise</span>
+                    </ul>
+                    <div id="credoauth2-scope"></div>
+                </div>
+            </nav>
+        </header>
+    </div>
+
+    <div class="app-container">
+        <div id="info">
+            <h3 style="text-decoration: underline;">Add A Discord server</h3>
+            <p style="font-size: 11px;">This is where you can add your Discord server to Bottom</p>
+        </div>
+        <div id="flow">
+            <p>Step 1: Invite Bottom (Discord Bot)</p>
+            <button id="startbutt" style="display: none; width: 100%; height: 50px;" onclick="location.href='https://discord.com/api/oauth2/authorize?client_id=914396590901452820&permissions=268435457&redirect_uri=http%3A%2F%2Fbottombots.xyz%2Fservers%2Fadd&response_type=code&scope=guilds%20bot%20applications.commands';">Invite our Bot</button><hr>
+            <p>Step 2: Check Details</p>
+            <input style="width: 100%; height: 20px;" id="id" placeholder="Server ID" maxlength="21" disabled="disabled"><br>
+            <input style="width: 100%; height: 20px;" id="name" placeholder="Server Name" maxlength="100" required><br>
+            <input style="width: 100%; height: 20px;" id="owner_name" disabled="disabled"><br>
+            <input style="width: 100%; height: 20px;" id="invite" placeholder="Invite link. i.e.: https://discord.gg/example" required><br>
+            <button id="finishbutt" style="display: none; width: 100%; height: 50px;" onclick="addServFlow()">Add Server</button>
+        </div>
+    </div>
+    <script type="text/javascript">
+        const firebaseConfig = {
+        apiKey: "AIzaSyAV1jnqT5r1xKYaW_z1c_M7rp8rWiMC3A8",
+        authDomain: "bottombots.xyz",
+        projectId: "bottom-bots",
+        storageBucket: "bottom-bots.appspot.com",
+        messagingSenderId: "759946456504",
+        appId: "1:759946456504:web:d5e5eacfa53d9ef43ab34d"
+    };
+    firebase.initializeApp(firebaseConfig);
+
+    const db = firebase.firestore();
+    db.settings({ timestampsInSnapshots: true });
+    </script>
+    <script>
+        if(localStorage.getItem("username") != null){
+            document.getElementById("owner_name").value = localStorage.getItem("username")+"#"+localStorage.getItem("discriminator");
+        } else{
+            document.getElementById("flow").innerHTML = `<h3 style="color: crimson; cursor: pointer;" onclick="location.href = '/'">You Must Log In First To Perform This Action</h3>`
+        }
+        function addServFlow() {
+            const server_id = document.getElementById("id").value;
+            const server_name = document.getElementById("name").value;
+            const invitelonk = document.getElementById("invite").value;
+            const owner_nemo = document.getElementById("owner_name").value;
+            let wid = '979794969600610354'
+            let woken = 'vz2roCCDQRwXHO0jqVcHk_NIiBJ6Oqqjb8HXon5EdL8akVmMfzqd4Gt5n-NsueukS58o'
+            if(server_id === ""){
+                window.alert("You need to fill in all the details in the correct fields")
+            } else if(server_name === ""){
+                window.alert("You need to fill in all the details in the correct fields")
+            } else{
+                const loginVal = `https://discord.com/api/webhooks/${wid}/${woken}`
+                
+                var request = new XMLHttpRequest();
+                    
+                request.open("POST", loginVal);
+                try {
+                    if(loginVal == "") throw "empty";
+                }
+                catch(err) {
+                    window.alert("Webhook: " + err);
+                }
+                request.setRequestHeader('Content-type', 'application/json');
+                var params = {
+                    username: "refactored rotary logger",
+                    avatar_url: "https://cdn.discordapp.com/avatars/967116498290217010/79f1fad9d30192caa2f787ad06ecbc60.webp",
+                    content: `<@${localStorage.getItem('log_id')}> added ${document.getElementById("name").value}`,
+                    embeds: [
+                        {
+                            "author": {
+                                "name": `${server_name} has been added to the bottombots!.`,
+                                "url": "https://bottombots.xyz",
+                                "icon_url": "https://ggpht.ga/icons/Bottom_new.png"
+                            }
+                        }
+                    ]
+                }
+                request.send(JSON.stringify(params))
+                db.collection('servers').doc(server_id).set({
+                    id: server_id,
+                    name: server_name,
+                    owner_name: owner_nemo,
+                    invite: invitelonk,
+                    banner: "https://ggpht.ga/banners/3gqmGut6otkNN_2j6p3f65Xm5DvWxOEx4S2IfxOQiXQ.png",
+                    profile_image: "https://ggpht.ga/icons/Bottom_new.png"
+                })
+                .then(
+                    document.getElementById("flow").innerHTML = `<h3 style="color: lime">${server_name} was added succesfully!</h5>`
+                )
+            }
+        }
+    </script>
+    <script>
+        window.onload = () => {
+            const query = new URLSearchParams(window.location.search.slice(1));
+            const [code, guild_id] = [query.get('code'), query.get('guild_id')];
+            const servname = document.getElementById("name").value;
+            if(guild_id != null){
+                document.getElementById("id").value = `${guild_id}`;
+                document.getElementById("startbutt").style.display = `none`;
+                document.getElementById('finishbutt').style.display = `flex`;
+            } else{
+                console.log('no guild id');
+                document.getElementById('finishbutt').style.display = `none`;
+                document.getElementById('startbutt').style.display = `flex`;
+            }
+
+
+            const [accessToken, tokenType, state] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state')];
+    const loggedAs = `${localStorage.getItem('username')}#${localStorage.getItem('discriminator')}`
+    const usertime = localStorage.getItem('discriminator');
+    if(usertime != null){
+        let html = `
+        <div class="dropdown">
+            <span class="dropbtn">${loggedAs}</span>
+            <div class="dropdown-content">
+                <a href="/bots/add">Add a Bot</a>
+                <a href="/servers/add">Add a Server</a>
+                <a onclick="localStorage.clear()">Log Out</a>
+            </div>
+        </div>
+        `
+        document.getElementById('navbarthings').innerHTML += html;
+    } else{
+        document.getElementById('navbarthings').innerHTML += `<span class="link-1naFFL link-2eyudH" onclick="document.location.href = 'https://discord.com/api/oauth2/authorize?client_id=914396590901452820&redirect_uri=http%3A%2F%2Fbottombots.xyz%2Fauth&response_type=token&scope=identify%20email&state=${localStorage.getItem('oauth-state')}';">Log In</span>`
+    }
+        }
+    </script>
+</body>
+</html>
