@@ -4,8 +4,8 @@
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width">
         <meta name="next-head-count" content="2">
-        <link rel="preload" href="newdefaultstyle.css" as="style">
-        <link rel="stylesheet" href="newdefaultstyle.css" data-n-g="">
+        <link rel="preload" href="../newdefaultstyle.css" as="style">
+        <link rel="stylesheet" href="../newdefaultstyle.css" data-n-g="">
         <noscript data-n-css=""></noscript>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
     <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
@@ -20,6 +20,7 @@
     };
     firebase.initializeApp(config);
     const store = firebase.firestore();
+    store.settings({ timestampsInSnapshots: true });
     </script>
         <script src="script.js" defer=""></script>
         <style data-styled="active" data-styled-version="5.3.3"></style>
@@ -28,15 +29,24 @@
         <link rel="icon" href="https://ggpht.ga/icons/Bottom_new.png" data-react-helmet="true">
 </head>
 <body>
-        <div id="title-and-nav">
-            <nav>
-                <img src="https://ggpht.ga/icons/Bottom_new.png" style="height: 46px; width: 46px;" draggable="false" onclick="location.href='/'">
-                <ul>
-                    <li><span onclick="location.href='/bots'">Bots!</span></li>
-                    <li><span onclick="location.href='/servers'">Servers?</span></li>
-                </ul>
-            </nav>
+    <div id="title" style="position: relative;">
+        <div class="logo" style="position: absolute;">
+            <img src="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" style="height: 66px; width: 66px;" title="Bottom" style="position: absolute; left: 0;" alt="Bottom_Logo" onclick="location.href='/'">
         </div>
+    </div>
+    <div class="row-31oovZ header-V8Sgnz">
+        <header class="wrapper-2bm6Le">
+            <nav class="nav-3_Sybl">
+                <div class="links-DGfZfm">
+                    <ul id="navbarthings">
+                        <span class="link-1naFFL link-2eyudH" onclick="location.href='/'">Bots</span>
+                        <span class="link-1naFFL link-2eyudH" onclick="location.href='/servers'">Servers</span>
+                    </ul>
+                    <div id="credoauth2-scope"></div>
+                </div>
+            </nav>
+        </header>
+    </div>
     <div id="botpage">
         <p>Loading...</p>
     </div>
