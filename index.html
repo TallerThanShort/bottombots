@@ -42,8 +42,11 @@
         </div>
 
         <div class="app-container">
-            <div class="gridz">
+            <div class="adsy">
                 <p>Loading...</p>
+            </div>
+            <hr>
+            <div class="gridz">
             </div>
         </div>
         <script type="text/javascript">
@@ -61,18 +64,59 @@
         db.settings({ timestampsInSnapshots: true });
         </script>
         <script>
+            const adspaces = document.querySelector('.adsy');
             const container = document.querySelector('.gridz');
+
+
+            db.collection('adbots').get().then(snapshot => {
+                setupAds(snapshot.docs);
+            });
 
             db.collection('bots').get().then(snapshot => {
                 setupSite(snapshot.docs);
             });
+
+            const setupAds = (data) => {
+                let html = ``;
+                data.forEach(doc => {
+                    const adv = doc.data();
+                    const li = `
+                    <div onclick="location.href='https://tallerthanshort.github.io/bottombots/bots/?id=${adv.id}';" title="Invite ${adv.name}">
+                        <div class="slot">
+                            <div class="banner">
+                                <img class="banner-img" src="${adv.banner}">
+                            </div>
+                            <div class="image">
+                                <img class="image-img" src="${adv.profile_image}">
+                            </div>
+                            <div class="bot-descriptors">
+                                <div class="bot-desc">
+                                    <div class="bot-name">${adv.name}</div>
+                                    <div class="bot-owner">${adv.owner_name}</div>
+                                    <div class="owner-descriptors">
+                                        <div>
+                                            <p id="bot-id">${adv.id}</p>
+                                        </div>
+                                        <div>
+                                            <img src="${adv.adlogo}" style="width: 22px; height: 23px;" title="This slot is advertised!">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    html += li
+                });
+                adspaces.innerHTML = html;
+            }
 
             const setupSite = (data) => {
                 let html = ``;
                 data.forEach(doc => {
                     const bot = doc.data();
                     const li = `
-                    <div onclick="location.href='https://tallerthanshort.github.io/bottombots/bots/#id=${bot.id}';" title="Invite ${bot.name}">
+                    <div onclick="location.href='https://tallerthanshort.github.io/bottombots/bots/?id=${bot.id}';" title="Invite ${bot.name}">
                         <div class="slot">
                             <div class="banner">
                                 <img class="banner-img" src="${bot.banner}">

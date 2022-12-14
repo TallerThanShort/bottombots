@@ -1,3 +1,7 @@
+body {
+  background-color: lightgray;
+}
+
 span{
     cursor: pointer;
     color: rgb(46, 122, 118);
@@ -108,7 +112,7 @@ button {
   max-width: min(1250px, 100%);
 }
 
-.gridz {
+.gridz, .adsy {
   gap: 1rem;
   display: grid;
   grid-auto-rows: 1fr;

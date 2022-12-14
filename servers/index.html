@@ -35,8 +35,11 @@
         </div>
     
         <div class="app-container">
-            <div class="gridz">
+            <div class="adsy">
                 <p>Loading...</p>
+            </div>
+            <hr>
+            <div class="gridz">
             </div>
         </div>
         <script type="text/javascript">
@@ -54,14 +57,53 @@
         db.settings({ timestampsInSnapshots: true });
         </script>
         <script>
+            const adspaces = document.querySelector('.adsy');
             const container = document.querySelector('.gridz');
             const usertime = localStorage.getItem('discriminator');
             let html = ``;
     
-            if(usertime != null){
-                db.collection('servers').get().then(snapshot => {
+            db.collection('adserv').get().then(snapshot => {
+                setupAds(snapshot.docs);
+            });
+
+            db.collection('servers').get().then(snapshot => {
                 setupSite(snapshot.docs);
             });
+
+            const setupAds = (data) => {
+                let html = ``;
+                data.forEach(doc => {
+                    const adv = doc.data();
+                    const li = `
+                    <div onclick="location.href='${adv.invite}';" title="Join ${adv.name}">
+                        <div class="slot">
+                            <div class="banner">
+                                <img class="banner-img" src="${adv.banner}">
+                            </div>
+                            <div class="image">
+                                <img class="image-img" src="${adv.profile_image}">
+                            </div>
+                            <div class="guild-descriptors">
+                                <div class="guild-desc">
+                                    <div class="guild-name">${adv.name}</div>
+                                    <div class="guild-owner">Owner: ${adv.owner_name}</div>
+                                    <div class="owner-descriptors">
+                                        <div>
+                                            <p id="tags">${adv.tags}</p>
+                                        </div>
+                                        <div>
+                                            <img src="${adv.adlogo}" style="width: 22px; height: 23px;" title="This slot is advertised!">
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    `;
+                    html += li
+                });
+                adspaces.innerHTML = html;
+            }
     
             const setupSite = (data) => {
                 data.forEach(doc => {
@@ -95,12 +137,6 @@
                     html += li
                 });
                 container.innerHTML = html;
-            }
-            } else{
-                const li = `
-                <h3 style="color: crimson; cursor: pointer;" onclick="location.href='/'">You must first log in to see /bots/review</h3>
-                `
-                container.innerHTML = li;
             }
             
         </script>
