@@ -73,7 +73,7 @@
             });
 
             db.collection('bots').get().then(snapshot => {
-                setupSite(snapshot.docs);
+                randomiseData(snapshot.docs);
             });
 
             const setupAds = (data) => {
@@ -112,38 +112,42 @@
             }
 
             const setupSite = (data) => {
-                let html = ``;
-                data.forEach(doc => {
-                    const bot = doc.data();
-                    const li = `
-                    <div onclick="location.href='https://tallerthanshort.github.io/bottombots/bots/?id=${bot.id}';" title="Invite ${bot.name}">
-                        <div class="slot">
-                            <div class="banner">
-                                <img class="banner-img" src="${bot.banner}">
-                            </div>
-                            <div class="image">
-                                <img class="image-img" src="${bot.profile_image}">
-                            </div>
-                            <div class="bot-descriptors">
-                                <div class="bot-desc">
-                                    <div class="bot-name">${bot.name}</div>
-                                    <div class="bot-owner">${bot.owner_name}</div>
-                                    <div class="owner-descriptors">
-                                        <div>
-                                            <p id="bot-id">${bot.id}</p>
+                data.forEach((div) => {
+                    if(div != undefined){
+                        db.collection('bots').where('id', "==", div).get().then((querySnapshot) => {
+                            querySnapshot.forEach((doc) => {
+                                const bot = doc.data();
+                                const li = `
+                                <div onclick="location.href='https://tallerthanshort.github.io/bottombots/bots/?id=${bot.id}';" title="Invite ${bot.name}">
+                                    <div class="slot">
+                                        <div class="banner">
+                                            <img class="banner-img" src="${bot.banner}">
                                         </div>
-                                        <div>
-                                            <p id="vote-count">Votes: ${bot.vote}</p>
+                                        <div class="image">
+                                            <img class="image-img" src="${bot.profile_image}">
+                                        </div>
+                                        <div class="bot-descriptors">
+                                            <div class="bot-desc">
+                                                <div class="bot-name">${bot.name}</div>
+                                                <div class="bot-owner">${bot.owner_name}</div>
+                                                <div class="owner-descriptors">
+                                                    <div>
+                                                        <p id="bot-id">${bot.id}</p>
+                                                    </div>
+                                                    <div>
+                                                        <p id="vote-count">Votes: ${bot.vote}</p>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                        </div>
-                    </div>
-                    `;
-                    html += li
-                });
-                container.innerHTML = html;
+                                `;
+                                container.innerHTML += li;
+                            })
+                        })
+                    }
+                })
             }
         </script>
     </body>
