@@ -1,9 +1,9 @@
 function generateRandomString() {
 	let randomString = '';
-	const randomNumber = Math.floor(Math.random() * 10);
+	const randomNumber = Math.floor(Math.random() * 6);
 
-	for (let i = 0; i < 20 + randomNumber; i++) {
-		randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+	for (let i = 0; i < 32 + randomNumber; i++) {
+		randomString += String.fromCharCode(47 + Math.floor(Math.random() * 11));
 	}
 
 	return randomString;
@@ -32,7 +32,7 @@ window.onload = () => {
                 <div class="dropdown-content">
                 <a href="/bots/add">Add a Bot</a>
                 <a href="/servers/add">Add a Server</a>
-                <a onclick="logout()">Log Out</a>
+                <a style="cursor: pointer;" onclick="logout()">Log Out</a>
             </div>
         </div>
         `

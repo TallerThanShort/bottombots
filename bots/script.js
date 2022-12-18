@@ -45,10 +45,10 @@ window.onload = function(){
 'day1'
 function generateRandomString() {
 	let randomString = '';
-	const randomNumber = Math.floor(Math.random() * 10);
+	const randomNumber = Math.floor(Math.random() * 6);
 
-	for (let i = 0; i < 20 + randomNumber; i++) {
-		randomString += String.fromCharCode(33 + Math.floor(Math.random() * 94));
+	for (let i = 0; i < 32 + randomNumber; i++) {
+		randomString += String.fromCharCode(47 + Math.floor(Math.random() * 11));
 	}
 
 	return randomString;

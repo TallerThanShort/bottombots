@@ -1,5 +1,6 @@
 body {
   background-color: lightgray;
+  color: black;
 }
 
 span{
@@ -95,11 +96,6 @@ button {
 .link-2eyudH {
   margin:10px;
   padding:10px
-}
-
-#title{
-  position: absolute;
-  left: 200px;
 }
 
 .app-container {

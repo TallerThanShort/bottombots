@@ -63,7 +63,7 @@
         if(localStorage.getItem("username") != null){
             document.getElementById("owner_name").value = localStorage.getItem("username")+"#"+localStorage.getItem("discriminator");
             document.getElementById("owner").value = localStorage.getItem("log_id");
-            document.getElementById("invite").value = `https://discord.com/oauth2/authorize?client_id=${document.getElementById("id").value}&permissions=0&scope=bot%20applications.commands`
+            document.getElementById("invite").value = `https://discord.com/oauth2/authorize?client_id=${document.getElementById("id").value}&perdisable_guild_select=truemissions=0&scope=bot%20applications.commands`
         } else{
             document.getElementById("flow").innerHTML = `<h3 style="color: crimson; cursor: pointer;" onclick="location.href = '/'">You Must Log In First To Perform This Action</h3>`
         }
@@ -113,7 +113,7 @@
                     name: bot_name,
                     owner: owner_id,
                     owner_name: owner_nemo,
-                    invite: `https://discord.com/oauth2/authorize?client_id=${document.getElementById("id").value}&permissions=0&scope=bot%20applications.commands` + "&guild_id=799639039481348097",
+                    invite: `https://discord.com/oauth2/authorize?client_id=${document.getElementById("id").value}&permissions=0&scope=bot%20applications.commands&disable_guild_select=true&guild_id=799639039481348097`,
                     banner: "3gqmGut6otkNN_2j6p3f65Xm5DvWxOEx4S2IfxOQiXQ",
                     profile_image: "Bottom_new"
                 })
