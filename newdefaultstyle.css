@@ -7,7 +7,12 @@ span{
     cursor: pointer;
     color: rgb(46, 122, 118);
 }
-  
+
+quote {
+  background-color: gray;
+  padding: 1px 4px 2px 4px;
+}
+
 #app-mount {
   height:100%
 }
