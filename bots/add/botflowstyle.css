@@ -1,3 +1,8 @@
+body {
+  background-color: lightgray;
+  color: black;
+}
+
 span{
     cursor: pointer;
     color: rgb(46, 122, 118);
@@ -14,7 +19,7 @@ button {
     text-transform: uppercase;
     text-decoration: none;
     outline: 0;
-    background: rgb(99, 99, 216);
+    background: rgb(46, 122, 118);
     width: 10%;
     height: 10%;
     border: 0;
@@ -99,11 +104,6 @@ button {
   padding:10px
 }
 
-#title{
-  position: absolute;
-  left: 200px;
-}
-
 .app-container {
   display: flex;
   flex-direction: column;
@@ -148,3 +148,7 @@ button {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: rgb(46, 122, 118);}
+
+.hidden {
+  display: none;
+}
