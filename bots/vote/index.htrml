@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width">
+        <meta name="next-head-count" content="2">
+        <link rel="preload" href="../add/botflowstyle.css" as="style">
+        <link rel="stylesheet" href="../add/botflowstyle.css" data-n-g="">
+        <noscript data-n-css=""></noscript>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script>
+        const config = {
+      apiKey: "AIzaSyAV1jnqT5r1xKYaW_z1c_M7rp8rWiMC3A8",
+      authDomain: "bottom-bots.firebaseapp.com",
+      projectId: "bottom-bots",
+      storageBucket: "bottom-bots.appspot.com",
+      messagingSenderId: "759946456504",
+      appId: "1:759946456504:web:d5e5eacfa53d9ef43ab34d"
+    };
+    firebase.initializeApp(config);
+    const store = firebase.firestore();
+    store.settings({ timestampsInSnapshots: true });
+    </script>
+        <script src="script.js" defer=""></script>
+        <style data-styled="active" data-styled-version="5.3.3"></style>
+        <title>Bottom | A new Discord Bot Listing Platform</title>
+        <meta name="description" content="Find Discord Bots and Servers all in one place, on Bottom.">
+        <link rel="icon" href="https://ggpht.ga/icons/Bottom_new.png" data-react-helmet="true">
+</head>
+<body>
+    <div id="title" style="position: relative;">
+        <div class="logo" style="position: absolute;">
+            <img src="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" style="height: 66px; width: 66px;" title="Bottom" alt="Bottom_Logo" onclick="location.href='/'">
+        </div>
+    </div>
+    <div class="row-31oovZ header-V8Sgnz">
+        <header class="wrapper-2bm6Le">
+            <nav class="nav-3_Sybl">
+                <div class="links-DGfZfm">
+                    <ul id="navbarthings">
+                        <span class="link-1naFFL link-2eyudH" onclick="location.href='/'">Bots</span>
+                        <span class="link-1naFFL link-2eyudH" onclick="location.href='/servers'">Servers</span>
+                    </ul>
+                    <div id="credoauth2-scope"></div>
+                </div>
+            </nav>
+        </header>
+    </div>
+    <div id="botpage" style="align-items: center; justify-content: center;">
+        <div style="text-align: center; overflow: visible;">
+            <div id="nameloca" style="text-decoration: underline;"></div>
+            <div id="reward-highlight">
+                <img src="https://media.discordapp.net/attachments/976904226548645968/1064615691929538610/1671711857-picsay2.jpg" alt="ad space" style="width:640px; height: 360px; object-fit: cover;">
+            </div>
+        </div>
+        <p></p>
+    </div>
+</body>
+</html>
