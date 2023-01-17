@@ -119,17 +119,21 @@ button {
   max-width: min(1250px, 100%);
 }
 
-.dropbtn {
-  background-color: rgba(46, 122, 118, 0.63);
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-}
-
 .dropdown {
   position: relative;
   display: inline-block;
+  object-fit: contain;
+}
+
+.dropbtn {
+  color: white;
+  border-radius: 50px;
+  overflow: hidden;
+}
+
+.dropbtn img {
+  overflow: hidden;
+  object-fit: contain;
 }
 
 .dropdown-content {
@@ -152,4 +156,4 @@ button {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: rgb(46, 122, 118);}
+.dropdown:hover .dropbtn {background-color: rgba(0, 0, 0, 0.2);}

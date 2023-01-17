@@ -9,7 +9,7 @@
     <title>Add a server | Bottom</title>
     <link rel="preload" href="serverflow.css" as="style">
     <link rel="stylesheet" href="serverflow.css" data-n-g="">
-    <link rel="icon" href="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" data-react-helmet="true">
+    <link rel="icon" href="https://ggpht.ga/icons/Bottom_new.png" data-react-helmet="true">
 </head>
 <body>
     <div id="title" style="position: relative;">
@@ -100,7 +100,7 @@
                             "author": {
                                 "name": `${server_name} has been added to Bottom!`,
                                 "url": "https://bottombots.xyz/servers",
-                                "icon_url": "https://ggpht.ga/icons/Bottom_new.png"
+                                "icon_url": "https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png"
                             }
                         }
                     ]
@@ -124,25 +124,38 @@
         window.onload = () => {
             const query = new URLSearchParams(window.location.search.slice(1));
             const [code, guild_id] = [query.get('code'), query.get('guild_id')];
+            const localCode = localStorage.getItem('accessToken')
             const servname = document.getElementById("name").value;
-            if(guild_id != null){
+            if(code != null){
+                
+                fetch(`https://discord.com/api/users/@me/guilds`, {
+                headers: {
+                    'Authorization': `Bearer ${localCode}`,
+                },
+            })
+                .then(result => result.json())
+                .then(response => {
+                    const specific = response.find(element => element.id == guild_id)
+                    document.getElementById("name").value = specific.name
+                })
+                .catch(error => {
+                    console.warn(error)
+                })
                 document.getElementById("id").value = `${guild_id}`;
                 document.getElementById("startbutt").style.display = `none`;
                 document.getElementById('finishbutt').style.display = `flex`;
             } else{
-                console.log('no guild id');
                 document.getElementById('finishbutt').style.display = `none`;
                 document.getElementById('startbutt').style.display = `flex`;
             }
 
 
-            const [accessToken, tokenType, state] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state')];
+    const [accessToken, tokenType, state, avast, userID] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state'), localStorage.getItem('avataruri'), localStorage.getItem('log_id')];
     const loggedAs = `${localStorage.getItem('username')}#${localStorage.getItem('discriminator')}`
-    const usertime = localStorage.getItem('discriminator');
-    if(usertime != null){
+    if(state, avast, userID != null){
         let html = `
         <div class="dropdown">
-            <span class="dropbtn">${loggedAs}</span>
+            <img src="https://cdn.discordapp.com/avatars/${userID}/${avast}?size=24" title="${loggedAs}" class="dropbtn"></span>
             <div class="dropdown-content">
                 <a href="/bots/add">Add a Bot</a>
                 <a href="/servers/add">Add a Server</a>
