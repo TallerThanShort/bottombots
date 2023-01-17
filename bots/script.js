@@ -12,7 +12,7 @@ window.onload = function(){
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const botto = doc.data()
-                    maestro.innerHTML = `<div id="banner" style="overflow: hidden; position: relative; height: 170px;"><img src="${botto.banner}" style="overflow: hidden; width: 100%;"></div><br><div id="profile" style="background-color: lightgray; position: relative;"><img src="${botto.profile_image}" style="height: 48px; width: 48px; border-radius: 50%; position: absolute; top: -46px; left: 6px;"><b id="name" style="position: absolute; top: 6px; left: 5px;">${botto.name}</b><p style="position: absolute; top: -21px; right: 15px; color: gray; font-size: 10px;">Bot ID: ${botto.id}</p><p style="position: absolute; top: -8px; right: 15px; font-size: 12px;">Votes: ${botto.vote}</p><p style="position: absolute; top: 32px; left: 5px;">Created by: ${botto.owner_name}</p></div><div style="position: relative;" id="invite"><button style="position: absolute; top: 56px; right: 15px;" onclick="location.href='${botto.invite}';">Invite ${botto.name}</button></div><div style="position: relative;" id="invite"><button style="position: absolute; top: 26px; right: 15px;" onclick="voteAction()">Vote for ${botto.name}</button></div><div style="position: relative;"><p id="bot-long-desc" style="position: absolute; top: 90px;">${botto.longdesc}</p></div>`;
+                    maestro.innerHTML = `<div id="banner" style="overflow: hidden; position: relative; height: 170px;"><img src="${botto.banner}" style="overflow: hidden; width: 100%;"></div><br><div id="profile" style="background-color: lightgray; position: relative;"><img src="${botto.profile_image}" style="height: 48px; width: 48px; border-radius: 50%; position: absolute; top: -46px; left: 6px;"><b id="name" style="position: absolute; top: 6px; left: 5px;">${botto.name}</b><p style="position: absolute; top: -18px; right: 15px; color: gray; font-size: 10px;">Bot ID: ${botto.id}</p><p style="position: absolute; top: -30px; right: 15px; color: gray; font-size: 11px;">Prefix: ${botto.prefix}</p><p style="position: absolute; top: -8px; right: 15px; font-size: 12px;">Votes: ${botto.vote}</p><p style="position: absolute; top: 32px; left: 5px;">Created by: ${botto.owner_name}</p></div><div style="position: relative;" id="invite"><button style="position: absolute; top: 56px; right: 15px;" onclick="location.href='${botto.invite}';">Invite ${botto.name}</button></div><div style="position: relative;" id="invite"><button style="position: absolute; top: 26px; right: 15px;" onclick="voteAction()">Vote for ${botto.name}</button></div><div style="position: relative;"><p id="bot-long-desc" style="position: absolute; top: 90px;">${botto.longdesc}</p></div>`;
         });
     })
     .catch((error) => {
@@ -42,7 +42,6 @@ window.onload = function(){
         document.getElementById('navbarthings').innerHTML += `<span class="link-1naFFL link-2eyudH" onclick="document.location.href = 'https://discord.com/api/oauth2/authorize?client_id=914396590901452820&redirect_uri=http%3A%2F%2Fbottombots.xyz%2Fauth&response_type=token&scope=identify%20email&state=${localStorage.getItem('oauth-state')}';">Log In</span>`
     }
 }
-'day1'
 function generateRandomString() {
 	let randomString = '';
 	const randomNumber = Math.floor(Math.random() * 6);
@@ -61,6 +60,7 @@ function logout() {
 
 function voteAction() {
     if(usertime != null){
+        location.href=`vote/?id=${target}`/*
         store.collection('bots').doc(target).get().then((doc) =>{
             let index = parseFloat(doc.data().vote) + 1
             store.collection('bots').doc(target).update({
@@ -70,7 +70,7 @@ function voteAction() {
             window.alert("An error occured during voting. Check console for more.");
             console.error(err);
         })
-    } else{
+    */} else{
         window.alert("You must first log in to vote!")
     }
 }
