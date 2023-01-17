@@ -22,7 +22,7 @@
         firebase.initializeApp(firebaseConfig);
 
         const db = firebase.firestore();
-        db.settings({ timestampsInSnapshots: true });
+        
 
         window.onload = function(){
             const fragment = new URLSearchParams(window.location.hash.slice(1));

@@ -60,17 +60,8 @@ function logout() {
 
 function voteAction() {
     if(usertime != null){
-        location.href=`vote/?id=${target}`/*
-        store.collection('bots').doc(target).get().then((doc) =>{
-            let index = parseFloat(doc.data().vote) + 1
-            store.collection('bots').doc(target).update({
-              vote: index
-            })
-          }).catch((err) => {
-            window.alert("An error occured during voting. Check console for more.");
-            console.error(err);
-        })
-    */} else{
+        location.href=`vote/?type=bot&id=${target}`
+    } else{
         window.alert("You must first log in to vote!")
     }
 }

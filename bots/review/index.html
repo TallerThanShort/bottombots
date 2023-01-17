@@ -6,8 +6,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Review | Bottom</title>
     <link rel="icon" href="https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png" data-react-helmet="true">
-    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-app.js"></script>
-    <script src="https://www.gstatic.com/firebasejs/5.6.0/firebase-firestore.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/7.14.4/firebase-firestore.js"></script>
     <link rel="preload" href="review.css" as="style">
     <link rel="stylesheet" href="review.css" data-n-g="">
 </head>
@@ -32,6 +32,7 @@
     </div>
 
     <div class="app-container">
+        <h3 class="texst"></h3>
         <div class="gridz">
             <p>Loading...</p>
         </div>
@@ -48,17 +49,29 @@
     firebase.initializeApp(firebaseConfig);
 
     const db = firebase.firestore();
-    db.settings({ timestampsInSnapshots: true });
+    
     </script>
     <script>
         const container = document.querySelector('.gridz');
+        const something = document.querySelector('.texst');
         const usertime = localStorage.getItem('discriminator');
         let html = ``;
 
         if(usertime != null){
+            db.collection('users').get().then(snapshot => {
+                helloUser(snapshot.docs);
+            });
             db.collection('queue').get().then(snapshot => {
-            setupSite(snapshot.docs);
-        });
+                setupSite(snapshot.docs);
+            });
+
+
+        const helloUser = (data) => {
+            data.forEach(doc => {
+                const boo = doc.data();
+                something.innerHTML += boo.wewo;
+            })
+        }
 
         const setupSite = (data) => {
             data.forEach(doc => {

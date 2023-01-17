@@ -15,7 +15,7 @@ function logout() {
 }
 
 window.onload = () => {
-    const [accessToken, tokenType, state] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state')];
+    const [accessToken, tokenType, state, timerama] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state'), localStorage.getItem('logtimer')];
     const usertime = localStorage.getItem('discriminator');
     const loggedAs = `${localStorage.getItem('username')}#${localStorage.getItem('discriminator')}`
 
@@ -25,7 +25,8 @@ window.onload = () => {
         localStorage.setItem('oauth-state', randomString);
     }
     
-    if(usertime != null){
+    if(usertime, timerama != null){
+        if(new Date().getTime() >= timerama) logout();
         let html = `
         <div class="dropdown">
             <span class="dropbtn">${loggedAs}</span>

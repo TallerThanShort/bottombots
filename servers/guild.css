@@ -231,3 +231,63 @@ button {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: rgb(46, 122, 118);}
+
+.css-1kc958e {
+  width: 100%;
+  margin-inline: auto;
+  max-width: 1344px;
+  padding-inline: 0px;
+  margin-top: 20px;
+  display: block;
+  overflow: scroll;
+}
+
+.css-v2q4y5 {
+  grid-column: 1 / -1;
+  grid-row: 1;
+  flex-direction: row;
+  display: flex;
+  -moz-box-pack: justify;
+  justify-content: space-between;
+  flex-direction: column;
+  margin-top: 20px;
+  margin-bottom: 40px;
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  position: relative;
+  padding: 10px;
+}
+
+.css-1gh8nrn {
+  padding: 20px;
+  /*display: flex;
+  align-items: center;
+  flex-direction: column;*/
+}
+
+.css-1w6z3vp {
+  font-size: 30px;
+  font-weight: 600;
+  color: rgb(46, 122, 118);
+  cursor: default;
+}
+
+.css-1gh8nrn > :not(style) ~ :not(style) {
+  margin-top: 2px;
+  margin-inline-end: 0;
+  margin-bottom: 0;
+  margin-inline-start: 0;
+}
+
+.css-v2q4y5 > :not(style) ~ :not(style) {
+  margin-top: 0;
+  margin-inline-end: 0;
+  margin-bottom: 0;
+  margin-inline-start: 0.5rem;
+}
+
+.css-12i7rr {
+  font-size: small;
+  font-weight: 300px;
+  color: gray;
+}
