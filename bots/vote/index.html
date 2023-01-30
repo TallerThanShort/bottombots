@@ -20,7 +20,6 @@
     };
     firebase.initializeApp(config);
     const store = firebase.firestore();
-    store.settings({ timestampsInSnapshots: true });
     </script>
         <script src="script.js" defer=""></script>
         <style data-styled="active" data-styled-version="5.3.3"></style>
@@ -47,11 +46,11 @@
             </nav>
         </header>
     </div>
-    <div id="botpage" style="align-items: center; justify-content: center;">
-        <div style="text-align: center; overflow: visible;">
-            <div id="nameloca" style="text-decoration: underline;"></div>
-            <div id="reward-highlight">
-                <img src="https://media.discordapp.net/attachments/976904226548645968/1064615691929538610/1671711857-picsay2.jpg" alt="ad space" style="width:640px; height: 360px; object-fit: cover;">
+    <div id="botpage" style="align-items: center; justify-content: center; width: 100%; height: auto;">
+        <div style="text-align: center; overflow: visible; width: 100%; height: auto;">
+            <div id="nameloca" style="width: 100%; height: auto; text-decoration: underline;"></div>
+            <div id="reward-highlight" style="width: 100%; height: auto;">
+                <a id="linkfors"><img id="imagerender"  alt="ad space" style="height: 360px; object-fit: cover;"></a>
             </div>
         </div>
         <p></p>

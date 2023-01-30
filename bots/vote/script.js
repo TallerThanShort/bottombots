@@ -7,6 +7,13 @@ const loggedAs = `${localStorage.getItem('username')}#${localStorage.getItem('di
 
 window.onload = function(){
     if(target != null){
+    fetch('https://advertise.ggpht.ga/api')
+        .then(result => result.json())
+        .then(response => {
+            const { name, forward } = response;
+            document.getElementById("linkfors").href = forward;
+            document.getElementById("imagerender").src = name;
+        })
     store.collection("bots").where("id", "==", target)
             .get()
             .then((querySnapshot) => {
