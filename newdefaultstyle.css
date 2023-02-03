@@ -8,6 +8,21 @@ span{
     color: rgb(46, 122, 118);
 }
 
+button {
+  font-family: 'Nunito bold', sans-serif;
+  text-transform: uppercase;
+  text-decoration: none;
+  outline: 0;
+  background: rgb(46, 122, 118);
+  width: 29%;
+  height: 46px;
+  border: 0;
+  padding: 15px;
+  color: #ffffff;
+  cursor: pointer;
+  border-radius: 10px;
+}
+
 quote {
   background-color: gray;
   padding: 1px 4px 2px 4px;

@@ -39,8 +39,8 @@
         <div id="flow">
             <input style="width: 100%; height: 20px;" id="id" placeholder="Bot ID" maxlength="21" required><br>
             <input style="width: 100%; height: 20px;" id="name" placeholder="Bot Name" maxlength="100" required><br>
-            <input style="width: 100%; height: 20px;" id="prefix" placeholder="Bot Prefix" maxlength="100" required><br>
-            <input style="width: 100%; height: 20px;" id="owner_name" disabled="disabled"><br>
+            <input style="width: 100%; height: 20px;" id="prefix" placeholder="Bot Prefix" maxlength="17" required><br>
+            <input style="width: 100%; height: 20px;" class="hidden" id="owner_name" disabled="disabled"><br>
             <input style="width: 100%; height: 20px;" class="hidden" id="owner" disabled="disabled" maxlength="100" required><br>
             <input style="width: 100%; height: 20px;" class="hidden" id="invite" disabled="disabled" placeholder="Bot Invite"><br>
             <button style="width: 100%; height: 50px;" onclick="addBotFlow()">Add Bot</button>
@@ -93,7 +93,7 @@
                     if(loginVal == "") throw "empty";
                 }
                 catch(err) {
-                    window.alert("Webhook: " + err);
+                    window.alert("Alert: " + err);
                 }
                 request.setRequestHeader('Content-type', 'application/json');
                 var params = {

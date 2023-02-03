@@ -19,7 +19,7 @@ button {
     text-transform: uppercase;
     text-decoration: none;
     outline: 0;
-    background: rgb(99, 99, 216);
+    background: rgb(46, 122, 118);
     width: 10%;
     height: 10%;
     border: 0;
@@ -126,14 +126,16 @@ button {
 }
 
 .dropbtn {
+  background-color: rgba(46, 122, 118, 0.63);
   color: white;
-  border-radius: 50px;
-  overflow: hidden;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
 }
 
-.dropbtn img {
-  overflow: hidden;
-  object-fit: contain;
+.dropdown {
+  position: relative;
+  display: inline-block;
 }
 
 .dropdown-content {
@@ -156,4 +158,4 @@ button {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: rgba(0, 0, 0, 0.2);}
+.dropdown:hover .dropbtn {background-color: rgb(46, 122, 118);}

@@ -4,6 +4,20 @@ const [target, uuid] = [fragment.get('id'), localStorage.getItem('log_id')];
 const [accessToken, tokenType, state] = [localStorage.getItem('access_token'), localStorage.getItem('token_type'), localStorage.getItem('state')];
 const usertime = localStorage.getItem('discriminator');
 const loggedAs = `${localStorage.getItem('username')}#${localStorage.getItem('discriminator')}`
+let wid = '1071123873053024316'
+let piname = ''
+let woken = 'v7TjXDpxpGvoF37osOtapHcdEPzNztzvtTmKchLvu8N5_93xXFwnrTYSUpnMh2-KRlz2'
+
+const config = {
+    apiKey: "AIzaSyAV1jnqT5r1xKYaW_z1c_M7rp8rWiMC3A8",
+    authDomain: "bottom-bots.firebaseapp.com",
+    projectId: "bottom-bots",
+    storageBucket: "bottom-bots.appspot.com",
+    messagingSenderId: "759946456504",
+    appId: "1:759946456504:web:d5e5eacfa53d9ef43ab34d"
+};
+firebase.initializeApp(config);
+const store = firebase.firestore();
 
 window.onload = function(){
     if(target != null){
@@ -19,6 +33,7 @@ window.onload = function(){
             .then((querySnapshot) => {
                 querySnapshot.forEach((doc) => {
                     const botto = doc.data()
+                    piname = botto.name
                     document.getElementById("nameloca").innerHTML = `<img src="${botto.profile_image}" style="margin-top: 8px; width: 64px; height: 64px; object-fit: cover; border-radius: 50%;"><h3>Voting for ${botto.name}<h3><button onclick="voteAction()" style="width: 100px;">Vote</button>`;
         });
     })
@@ -68,13 +83,42 @@ function logout() {
 function voteAction() {
     if(usertime != null){
         store.collection('bots').doc(target).get().then((doc) =>{
-            let index = parseFloat(doc.data().vote) + 1
-            store.collection('bots').doc(target).update({
-              vote: index
-            })
-          }).catch((err) => {
-            window.alert("An error occured during voting. Check console for more.");
-            console.error(err);
+            const dra = doc.data()
+            
+            const loginVal = `https://discord.com/api/webhooks/${wid}/${woken}`
+    
+            var request = new XMLHttpRequest();
+                
+            request.open("POST", loginVal);
+            try {
+                if(loginVal == "") throw "empty";
+            }
+            catch(err) {
+                window.alert("Webhook: " + err);
+            }
+            request.setRequestHeader('Content-type', 'application/json');
+            var params = {
+                username: "refactored rotary logger",
+                avatar_url: "https://cdn.discordapp.com/avatars/967116498290217010/79f1fad9d30192caa2f787ad06ecbc60.webp",
+                content: ` `,
+                embeds: [
+                    {
+                        "author": {
+                            "name": `${localStorage.getItem('username')} voted for ${dra.name}!`,
+                            "url": `https://bottombots.xyz/bots/?id=${target}`,
+                            "icon_url": "https://tallerthanshort.github.io/ut3.ggpht/icons/Bottom_new.png"
+                        }
+                    }
+                ]
+            }
+            request.send(JSON.stringify(params))
+
+            store.collection('creds').doc(target).update({
+                vote: firebase.firestore.FieldValue.increment(1),
+                votes: firebase.firestore.FieldValue.arrayUnion(uuid)
+            });
+            setTimeout(function(){location.href=`/bots/?id=${target}`},1900)
+            
         })
     } else{
         window.alert("You must first log in to vote!")

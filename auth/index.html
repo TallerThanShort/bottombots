@@ -30,7 +30,6 @@
             localStorage.setItem('accessToken', accessToken);
             localStorage.setItem('tokenType', tokenType);
             localStorage.setItem('state', state);
-            localStorage.setItem('timeout', timeout);
 
             if (!accessToken) {
                 if(tokenType){
@@ -51,7 +50,7 @@
                     localStorage.setItem('username', username);
                     localStorage.setItem('discriminator', discriminator);
                     localStorage.setItem('log_id', id);
-                    localStorage.setItem('logtimer', new Date().getTime() + 604800);
+                    localStorage.setItem('logtimer', new Date().getTime() + timeout);
                     location.href="/";
                 })
         }

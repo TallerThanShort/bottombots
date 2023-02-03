@@ -107,6 +107,21 @@
     flex-direction: column;*/
 }
 
+button {
+    font-family: 'Nunito bold', sans-serif;
+    text-transform: uppercase;
+    text-decoration: none;
+    outline: 0;
+    background: rgb(46, 122, 118);
+    width: 19%;
+    height: 45px;
+    border: 0;
+    padding: 15px;
+    color: #ffffff;
+    cursor: pointer;
+    border-radius: 10px;
+  }
+
 .css-1w6z3vp {
     font-size: 30px;
     font-weight: 600;
