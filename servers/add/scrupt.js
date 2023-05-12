@@ -1,14 +1,3 @@
-const firebaseConfig = {
-    apiKey: "AIzaSyAV1jnqT5r1xKYaW_z1c_M7rp8rWiMC3A8",
-    authDomain: "bottombots.xyz",
-    projectId: "bottom-bots",
-    storageBucket: "bottom-bots.appspot.com",
-    messagingSenderId: "759946456504",
-    appId: "1:759946456504:web:d5e5eacfa53d9ef43ab34d"
-};
-firebase.initializeApp(firebaseConfig);
-
-const db = firebase.firestore();
 
 if(localStorage.getItem("username") != null){
     document.getElementById("owner_name").value = localStorage.getItem("username")+"#"+localStorage.getItem("discriminator");
@@ -21,8 +10,6 @@ function addServFlow() {
     const invitelonk = document.getElementById("invite").value;
     const owner_nemo = document.getElementById("owner_name").value;
     const pidid = document.getElementById("tagz").value;
-    let wid = '979794969600610354'
-    let woken = 'vz2roCCDQRwXHO0jqVcHk_NIiBJ6Oqqjb8HXon5EdL8akVmMfzqd4Gt5n-NsueukS58o'
 
     if(invitelonk === ""){
         window.alert("You need to fill in all the details in the correct fields")

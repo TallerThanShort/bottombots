@@ -46,7 +46,7 @@ window.onload = function(){
         `
         document.getElementById('navbarthings').innerHTML += html;
     } else{
-        document.getElementById('navbarthings').innerHTML += `<span class="link-1naFFL link-2eyudH" onclick="document.location.href = 'https://discord.com/api/oauth2/authorize?client_id=914396590901452820&redirect_uri=http%3A%2F%2Fbottombots.xyz%2Fauth&response_type=token&scope=identify%20email&state=${localStorage.getItem('oauth-state')}';">Log In</span>`
+        document.getElementById('navbarthings').innerHTML += `<span class="link-1naFFL link-2eyudH" onclick="document.location.href = '<span class="link-1naFFL link-2eyudH" onclick="document.location.href = 'https://discord.gg/67ZBtEXt2V';">Join the Discord for updates</span>`
     }
 }
 function generateRandomString() {
@@ -66,9 +66,5 @@ function logout() {
 }
 
 function voteAction() {
-    if(usertime != null){
-        location.href=`vote/?type=bot&id=${target}`
-    } else{
-        window.alert("You must first log in to vote!")
-    }
+    location.href=`vote/?type=bot&id=${target}`
 }
